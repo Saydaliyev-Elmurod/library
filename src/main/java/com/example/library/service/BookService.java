@@ -1,6 +1,6 @@
 package com.example.library.service;
 
-import com.example.library.dto.Book;
+import com.example.library.dto.BookEntity;
 import com.example.library.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,20 +14,20 @@ public class BookService {
     private BookRepository bookRepository;
 
     @PostMapping("/create")
-    public Book createBook(@RequestBody Book book) {
+    public BookEntity createBook(@RequestBody BookEntity book) {
         bookRepository.save(book);
 //        System.out.println(book);
         return book;
     }
 
     @GetMapping("/list")
-    public List<Book> getBookList() {
+    public List<BookEntity> getBookList() {
         return bookRepository.list();
     }
 
-    @GetMapping("/list/{id}")
-    public Book getBookById(@PathVariable("id") Integer id) {
-        return bookRepository.list().stream().filter(book -> book.getId().equals(id)).findFirst().orElse(null);
+    @GetMapping("/get/{id}")
+    public BookEntity getBookById(@PathVariable("id") Integer id) {
+        return bookRepository.getById(id);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -36,7 +36,7 @@ public class BookService {
     }
 
     @PutMapping("/update/{id}")
-    public void update(@PathVariable("id") Integer id, @RequestBody Book book) {
+    public void update(@PathVariable("id") Integer id, @RequestBody BookEntity book) {
         book.setId(id);
         bookRepository.update(book);
     }

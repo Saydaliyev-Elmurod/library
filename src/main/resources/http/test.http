@@ -10,7 +10,7 @@ Content-Type:application/json
 ### get book list
 GET localhost:8080/book/list
 ### get book by id
-GET localhost:8080/book/list/8
+GET localhost:8080/book/get/1
 ### delete by id
 DELETE localhost:8080/book/delete/8
 ### update by id
@@ -21,4 +21,31 @@ Content-Type: application/json
   "title": "Kecha va Kunduz ",
   "author": "Cho'lpon ",
   "publishYear": 1936
+}
+
+
+###
+### create student
+POST  localhost:8080/student/create
+Content-Type: application/json
+
+{
+  "name": "Dilmurod",
+  "surname": "Saydaliyev",
+  "phone": "998900058516"
+}
+
+
+### student list
+GET localhost:8080/student/list
+### get student by id
+GET localhost:8080/student/get/3
+### delete student by id
+DELETE localhost:8080/student/delete/1
+### update student by id
+PUT localhost:8080/student/update/3
+Content-Type: application/json
+
+{
+    "phone": "998998768516"
 }
