@@ -14,5 +14,6 @@
         <!-- MAPPINGS -->
         <mapping class="com.example.library.dto.BookEntity"/>
         <mapping class="com.example.library.dto.StudentEntity"/>
+        <mapping class="com.example.library.dto.StudentBookEntity"/>
     </session-factory>
 </hibernate-configuration>

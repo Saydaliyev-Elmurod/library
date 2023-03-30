@@ -2,10 +2,12 @@ package com.example.library.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 @Getter
 @Setter
+@ToString
 @Entity
 public class BookEntity {
     @Id

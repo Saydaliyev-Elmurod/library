@@ -28,6 +28,7 @@ public class StudentRepository {
         Session session = sessionFactory.openSession();
         Query<StudentEntity> query = session.createQuery("FROM StudentEntity ", StudentEntity.class);
         List<StudentEntity> studentEntityList = query.getResultList();
+        session.close();
         return studentEntityList;
     }
 

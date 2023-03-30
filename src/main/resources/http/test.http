@@ -3,9 +3,9 @@ POST localhost:8080/book/create
 Content-Type:application/json
 
 {
-  "title": "Kecha va kunduz",
-  "author": "Cho'lpon",
-  "publishYear": "1933"
+  "title": "Ikki eshik orasi",
+  "author": "O'tkir Hoshimov",
+  "publishYear": "1985"
 }
 ### get book list
 GET localhost:8080/book/list
@@ -24,15 +24,15 @@ Content-Type: application/json
 }
 
 
-###
+### Student
 ### create student
 POST  localhost:8080/student/create
 Content-Type: application/json
 
 {
-  "name": "Dilmurod",
-  "surname": "Saydaliyev",
-  "phone": "998900058516"
+  "name": "Mahmud",
+  "surname": "Mahmudov",
+  "phone": "998909038923"
 }
 
 
@@ -41,7 +41,7 @@ GET localhost:8080/student/list
 ### get student by id
 GET localhost:8080/student/get/3
 ### delete student by id
-DELETE localhost:8080/student/delete/1
+DELETE localhost:8080/student/delete/3
 ### update student by id
 PUT localhost:8080/student/update/3
 Content-Type: application/json
@@ -49,3 +49,28 @@ Content-Type: application/json
 {
     "phone": "998998768516"
 }
+
+### Student Book
+### create student book
+POST localhost:8080/student_book/create
+Content-Type: application/json
+
+{
+
+  "student": {
+    "id": 5
+  },
+  "book": {
+    "id": 4
+  }
+}
+
+### student book list
+GET localhost:8080/student_book/list
+### get student book by id
+GET localhost:8080/student_book/7
+### get student list who get book
+GET localhost:8080/student_book/student/list
+### get taken book list
+GET localhost:8080/student_book/book/list
+

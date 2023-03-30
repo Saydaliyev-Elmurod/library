@@ -25,9 +25,9 @@ Write following API list;
     5.PUT [.../student/{id}] - for updating student.
 
 3. StudentBook
-    1.POST [.../student_book/] - for taking book . (studentId,bookId)
+   -- 1.POST [.../student_book/] - for taking book . (studentId,bookId)
     2.PUT [.../student_book/{id}] - for returning book .
-    3.GET [.../student_book/] - for getting student_book list.
-    4.GET [.../student_book/{id}] - get student_book by id.
-    5.GET [.../student_book/student/{id}] - return all student taken book
-    6.GET [.../student_book/book/{id}] - return all book taken list
+  --  3.GET [.../student_book/] - for getting student_book list.
+  --  4.GET [.../student_book/{id}] - get student_book by id.
+   -- 5.GET [.../student_book/student/{id}] - return all student taken book
+   -- 6.GET [.../student_book/book/{id}] - return all book taken list
