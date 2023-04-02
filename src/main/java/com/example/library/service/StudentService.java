@@ -1,44 +1,56 @@
 package com.example.library.service;
 
-import com.example.library.dto.StudentEntity;
+import com.example.library.entity.StudentEntity;
+import com.example.library.exp.NotValidException;
 import com.example.library.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/student")
+@Service
 public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
-    @PostMapping("/create")
-    public void create(@RequestBody StudentEntity student) {
+
+    public StudentEntity update(StudentEntity student) throws NotValidException {
+        StudentEntity student1 = get(student.getId());
+        studentRepository.update(student);
+        return student1;
+    }
+
+    public StudentEntity delete(Integer id) throws NotValidException {
+        StudentEntity student = get(id);
+        studentRepository.delete(id);
+        return student;
+    }
+
+    public StudentEntity getById(Integer id) throws NotValidException {
+        return get(id);
+    }
+
+    private StudentEntity get(Integer id) {
+        StudentEntity student = get(id);
+        return student;
+    }
+
+    public List<StudentEntity> list() throws NotValidException {
+        List<StudentEntity> list = studentRepository.list();
+        if (list.isEmpty()) {
+            throw new NotValidException("List is empty");
+        }
+        return list;
+    }
+
+    public void save(StudentEntity student) throws NotValidException {
+        if (student.getSurname() == null) {
+            throw new NotValidException("Surname is null");
+        } else if (student.getName() == null) {
+            throw new NotValidException("Name is null");
+        } else if (student.getPhone() == null) {
+            throw new NotValidException("Phone is null");
+        }
         studentRepository.save(student);
     }
-
-    @GetMapping("/list")
-    public List<StudentEntity> getList() {
-        return studentRepository.list();
-    }
-
-    @GetMapping("/get/{id}")
-    public StudentEntity getStudentByID(@PathVariable("id") Integer id) {
-        return studentRepository.getById(id);
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable("id") Integer id) {
-        studentRepository.delete(id);
-    }
-
-    @PutMapping("/update/{id}")
-    public void update(@PathVariable("id") Integer id,
-                        @RequestBody StudentEntity student) {
-        student.setId(id);
-        studentRepository.update(student);
-    }
-
 }

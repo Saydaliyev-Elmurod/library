@@ -1,8 +1,8 @@
 package com.example.library.repository;
 
-import com.example.library.dto.BookEntity;
-import com.example.library.dto.StudentBookEntity;
-import com.example.library.dto.StudentEntity;
+import com.example.library.entity.BookEntity;
+import com.example.library.entity.StudentBookEntity;
+import com.example.library.entity.StudentEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -10,7 +10,6 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.library.dto;
+package com.example.library.entity;
 
 import com.example.library.enums.BookStatus;
 import lombok.Getter;

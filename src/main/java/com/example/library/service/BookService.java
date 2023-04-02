@@ -1,44 +1,65 @@
 package com.example.library.service;
 
-import com.example.library.dto.BookEntity;
+import com.example.library.entity.BookEntity;
+import com.example.library.exp.NotValidException;
 import com.example.library.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/book")
+@Service
 public class BookService {
     @Autowired
     private BookRepository bookRepository;
 
-    @PostMapping("/create")
-    public BookEntity createBook(@RequestBody BookEntity book) {
+
+    public void save(BookEntity book) throws NotValidException {
+        checkSave(book);
         bookRepository.save(book);
-//        System.out.println(book);
-        return book;
     }
 
-    @GetMapping("/list")
-    public List<BookEntity> getBookList() {
-        return bookRepository.list();
+    private void checkSave(BookEntity book) {
+        if (book.getTitle() == null) {
+            throw new NotValidException("Title is null");
+        } else if (book.getAuthor() == null) {
+            throw new NotValidException("Author is null");
+        } else if (book.getPublishYear() == null) {
+            throw new NotValidException("Publish year is null");
+        }
     }
 
-    @GetMapping("/get/{id}")
-    public BookEntity getBookById(@PathVariable("id") Integer id) {
-        return bookRepository.getById(id);
+    public List<BookEntity> list() throws NotValidException {
+        List<BookEntity> list = bookRepository.list();
+        if (list.isEmpty()) {
+            throw new NotValidException("List is empty");
+        }
+        return list;
+
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteById(@PathVariable("id") Integer id) {
-        bookRepository.delete(id);
+    public BookEntity getById(Integer id) throws NotValidException {
+        return get(id);
     }
 
-    @PutMapping("/update/{id}")
-    public void update(@PathVariable("id") Integer id, @RequestBody BookEntity book) {
-        book.setId(id);
+    public BookEntity delete(Integer id) throws NotValidException {
+        if (bookRepository.delete(id) < 1) {
+            throw new NotValidException("Id not found");
+        }
+        return getById(id);
+
+    }
+
+    public void update(BookEntity book) throws NotValidException {
+        checkSave(book);
         bookRepository.update(book);
     }
 
+    public BookEntity get(Integer id) {
+        BookEntity book = bookRepository.getById(id);
+        if (book == null) {
+            throw new NotValidException("Book not found");
+        }
+        return book;
+    }
 }

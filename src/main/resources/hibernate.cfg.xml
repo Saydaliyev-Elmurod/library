@@ -12,8 +12,8 @@
         <property name="hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
         <!-- MAPPINGS -->
-        <mapping class="com.example.library.dto.BookEntity"/>
-        <mapping class="com.example.library.dto.StudentEntity"/>
-        <mapping class="com.example.library.dto.StudentBookEntity"/>
+        <mapping class="com.example.library.entity.BookEntity"/>
+        <mapping class="com.example.library.entity.StudentEntity"/>
+        <mapping class="com.example.library.entity.StudentBookEntity"/>
     </session-factory>
 </hibernate-configuration>

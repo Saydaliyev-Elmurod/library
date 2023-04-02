@@ -4,15 +4,14 @@ Content-Type:application/json
 
 {
   "title": "Ikki eshik orasi",
-  "author": "O'tkir Hoshimov",
-  "publishYear": "1985"
+  "author": "O'tkir Hoshimov"
 }
 ### get book list
 GET localhost:8080/book/list
 ### get book by id
-GET localhost:8080/book/get/1
+GET localhost:8080/book/get/10
 ### delete by id
-DELETE localhost:8080/book/delete/8
+DELETE localhost:8080/book/delete/1
 ### update by id
 PUT  localhost:8080/book/update/9
 Content-Type: application/json
@@ -26,7 +25,7 @@ Content-Type: application/json
 
 ### Student
 ### create student
-POST  localhost:8080/student/create
+POST  localhost:8080/student/create1
 Content-Type: application/json
 
 {
@@ -56,7 +55,6 @@ POST localhost:8080/student_book/create
 Content-Type: application/json
 
 {
-
   "student": {
     "id": 5
   },

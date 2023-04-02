@@ -1,6 +1,6 @@
 package com.example.library.repository;
 
-import com.example.library.dto.StudentEntity;
+import com.example.library.entity.StudentEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

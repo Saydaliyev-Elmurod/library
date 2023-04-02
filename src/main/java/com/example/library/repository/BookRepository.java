@@ -1,6 +1,6 @@
 package com.example.library.repository;
 
-import com.example.library.dto.BookEntity;
+import com.example.library.entity.BookEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -38,15 +38,17 @@ public class BookRepository {
         return c;
     }
 
-    public void delete(Integer id) {
+    public int delete(Integer id) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("delete from BookEntity where id =:id");
+        Query query = session.createQuery("DELETE from BookEntity where id =:id");
         query.setParameter("id", id);
-        query.executeUpdate();
+        int r = query.executeUpdate();
         transaction.commit();
         session.close();
+        return r;
     }
+
     public void update(BookEntity entity) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
